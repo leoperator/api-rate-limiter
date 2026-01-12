@@ -12,12 +12,53 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - app_network
 
   redis:
     image: redis:7-alpine
     container_name: rate_limiter_redis
     ports:
       - "6379:6379"
+    networks:
+      - app_network
+
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: rate_limiter_api
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DB_HOST=postgres
+      - DATABASE_URL=postgres://admin:password123@postgres:5432/rate_limiter_db
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - app_network
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rate_limiter_ui
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - app_network
 
 volumes:
   pgdata:
+
+networks:
+  app_network:
+    driver: bridge
