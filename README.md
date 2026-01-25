@@ -10,6 +10,8 @@
 
 Unlike standard rate limiters, this project implements a **Distributed Token Bucket Algorithm** using custom **Redis Lua scripts** to ensure atomic operations across a cluster. It also solves the "Overselling Problem" using **Optimistic Locking** in PostgreSQL.
 
+Deployed Link: http://15.207.223.46:5173/
+
 ---
 
 ## 🚀 Key Features
