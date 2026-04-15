@@ -77,7 +77,7 @@ src/
 ### 1. Clone & Install
    ```
    git clone https://github.com/leoperator/api-rate-limiter.git
-   cd flash-sale-system
+   cd api-rate-limiter
    npm install
    ```
 
