@@ -12,6 +12,9 @@ Unlike standard rate limiters, this project implements a **Distributed Token Buc
 
 Deployed Link: http://15.207.223.46:5173/
 
+<img width="1280" height="506" alt="image" src="https://github.com/user-attachments/assets/49797792-951e-4124-8769-f01ab686fef5" />
+
+
 ---
 
 ## 🚀 Key Features
